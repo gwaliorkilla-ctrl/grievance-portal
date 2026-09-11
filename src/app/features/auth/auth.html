@@ -1,39 +1,45 @@
-<div class="login-container">
-  <form class="login-form" (submit)="handleSubmit($event)">
+<div class="container mt-4 bg-light p-4 rounded shadow-sm">
+  <form class="row" (submit)="handleSubmit($event)">
     <h2 class="login-form__title">Sign In</h2>
     
-    <div class="login-form__group" >
+    <div class="form-group mb-3 col-md-12" >
         @if (loginForm.username().touched() && loginForm.username().invalid()){
             @for (error of loginForm.username().errors(); track error.kind){
-                <span class="login-form__span">{{error.message}}</span>
+                <span class="form-text text-warning d-block mt-1">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                    {{error.message}}
+                </span>
             }
         }
-      <label for="text" class="login-form__label">User Name</label>
+      <label for="username" class="login-form__label">User Name</label>
       <input 
         type="text" 
         id="username" 
-        class="login-form__input" 
-        placeholder="username"
+        class="form-control" 
+        placeholder="Enter Your Username"
         [formField]="loginForm.username"
         >
     </div>
     
-    <div class="login-form__group">
+    <div class="form-group mb-3 col-md-12">
         @if (loginForm.password().touched() && loginForm.password().invalid()){
             @for (error of loginForm.password().errors(); track error.kind){
-                <span class="login-form__span">{{error.message}}</span>
+                <span class="form-text text-warning d-block mt-1">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                    {{error.message}}
+                </span>
             }
         }
       <label for="password" class="login-form__label">Password</label>
       <input 
         type="password" 
         id="password" 
-        class="login-form__input" 
-        placeholder="••••••••"
+        class="form-control" 
+        placeholder="Enter Your Password"
         [formField]="loginForm.password"
         >
     </div>
     
-    <button type="submit" class="login-form__button" [disabled]="loginForm().invalid()">Login</button>
+    <button type="submit" class="btn btn-success" [disabled]="loginForm().invalid()">Login</button>
   </form>
 </div>
