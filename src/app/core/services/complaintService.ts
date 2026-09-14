@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Service, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { 
@@ -8,9 +8,7 @@ import {
   ComplaintCreateResponse 
 } from '../../shared/models/complaint.type';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Service()
 export class ComplaintService {
   private http = inject(HttpClient);
   private apiUrl = 'https://grievance-portal-backend-six.vercel.app/api/complaints';
