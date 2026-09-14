@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <h4 class="fw-bold mb-0 text-navy">Grievance Directory</h4>
+    <a routerLink="/complaints/new" class="btn btn-gov-accent btn-sm">+ Lodge New Record</a>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-4 gov-card">
+    <div class="card-body bg-white p-3">
+      <form [formGroup]="filterForm" (ngSubmit)="applyFilters()" class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label small fw-medium">From Date</label>
+          <input type="date" formControlName="fromDate" class="form-control form-control-sm gov-input">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label small fw-medium">To Date</label>
+          <input type="date" formControlName="toDate" class="form-control form-control-sm gov-input">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label small fw-medium">Category</label>
+          <select formControlName="type" class="form-select form-select-sm gov-input">
+            <option value="">All Categories</option>
+            <option value="Service">Public Service</option>
+            <option value="Billing">Billing & Financial</option>
+            <option value="Technical">Technical</option>
+          </select>
+        </div>
+        <div class="col-md-3 d-flex align-items-end gap-2">
+          <button type="submit" class="btn btn-gov-primary btn-sm w-100">Apply Filter</button>
+          <button type="button" (click)="resetFilters()" class="btn btn-outline-secondary btn-sm">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-navy"></div>
+    </div>
+  } @else {
+    <div class="table-responsive shadow-sm rounded bg-white">
+      <table class="table table-hover align-middle mb-0 gov-table">
+        <thead>
+          <tr>
+            <th>Filing Date</th>
+            <th>Title</th>
+            <th>Complainant</th>
+            <th>Category</th>
+            <th>Sub-Category</th>
+            <th class="text-end">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of complaints(); track item.id) {
+            <tr>
+              <td class="text-secondary small">{{ item.created_at | date:'mediumDate' }}</td>
+              <td class="fw-semibold text-navy">{{ item.title }}</td>
+              <td>{{ item.complainant_name }}</td>
+              <td><span class="badge badge-gov-type">{{ item.complaint_type }}</span></td>
+              <td class="text-muted small">{{ item.complaint_subtype }}</td>
+              <td class="text-end">
+                <div class="d-flex justify-content-end gap-2">
+                  <a [routerLink]="['/complaints', item.id]" class="btn btn-sm btn-outline-primary py-1">View File</a>
+                  <button 
+                    type="button" 
+                    class="btn btn-sm btn-success py-1" 
+                    [disabled]="deletingId() === item.id"
+                    (click)="resolveComplaint(item.id, $event)">
+                    @if (deletingId() === item.id) {
+                      <span class="spinner-border spinner-border-sm"></span>
+                    } @else {
+                      ✓ Resolve
+                    }
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="text-center py-4 text-muted">No official records found matching the query.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-3 mb-5">
+      <small class="text-muted">Showing Page {{ currentPage() }} of {{ totalPages() }} (Total Records: {{ totalRecords() }})</small>
+      <div class="btn-group">
+        <button class="btn btn-outline-secondary btn-sm" [disabled]="currentPage() === 1" (click)="changePage(currentPage() - 1)">Previous</button>
+        <button class="btn btn-outline-secondary btn-sm" [disabled]="currentPage() >= totalPages()" (click)="changePage(currentPage() + 1)">Next</button>
+      </div>
+    </div>
+  }
+</div>

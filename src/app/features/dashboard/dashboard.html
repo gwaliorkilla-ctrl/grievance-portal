@@ -1,0 +1,73 @@
+<div class="container mb-5">
+  <div class="border-bottom pb-3 mb-4">
+    <h4 class="fw-bold text-navy mb-0">Executive Analytics Dashboard</h4>
+    <small class="text-muted">Real-time summary of public grievance metrics and submissions</small>
+  </div>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm gov-card bg-navy text-white">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-light opacity-75 small text-uppercase">Total Grievances</h6>
+              <h2 class="fw-bold mb-0 mt-1">{{ totalCount() }}</h2>
+            </div>
+            <span class="fs-1 opacity-50">📁</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm gov-card bg-green text-white">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-light opacity-75 small text-uppercase">Public Service Issues</h6>
+              <h2 class="fw-bold mb-0 mt-1">{{ serviceCount() }}</h2>
+            </div>
+            <span class="fs-1 opacity-50">🏢</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm gov-card bg-gold text-dark">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="text-dark opacity-75 small text-uppercase fw-semibold">Billing & Tech Issues</h6>
+              <h2 class="fw-bold mb-0 mt-1">{{ otherCount() }}</h2>
+            </div>
+            <span class="fs-1 opacity-50">⚡</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm border-0 gov-card bg-white">
+    <div class="card-header bg-navy text-white py-3 d-flex justify-content-between align-items-center">
+      <h6 class="mb-0 fw-bold">Recent Grievance Submissions</h6>
+      <a routerLink="/complaints" class="btn btn-sm btn-outline-light py-1">View Full Directory</a>
+    </div>
+    <div class="card-body p-0">
+      <ul class="list-group list-group-flush">
+        @for (item of recentComplaints(); track item.id) {
+          <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+            <div>
+              <strong class="text-navy d-block">{{ item.title }}</strong>
+              <small class="text-muted">By {{ item.complainant_name }} &bull; Category: {{ item.complaint_type }}</small>
+            </div>
+            <a [routerLink]="['/complaints', item.id]" class="btn btn-sm btn-outline-secondary">Inspect File</a>
+          </li>
+        } @empty {
+          <li class="list-group-item p-4 text-center text-muted">No recent submissions logged.</li>
+        }
+      </ul>
+    </div>
+  </div>
+  <button class="btn btn-primary">Next</button>
+</div>

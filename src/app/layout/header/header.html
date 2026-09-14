@@ -1,0 +1,20 @@
+<header class="header-banner text-white px-3 py-2 d-flex align-items-center justify-content-between shadow-sm">
+  <div class="d-flex align-items-center gap-2">
+    @if(authService.isLoggedIn()){
+      <button 
+        type="button" 
+        class="btn btn-sm btn-outline-light" 
+        (click)="toggle()"
+        >
+        ☰
+      </button>
+    }
+    <span class="fs-4">🏛️</span>
+    <h5 class="mb-0 fw-bold header-title">Grievance Portal</h5>
+  </div>
+  @if(authService.isLoggedIn()){
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-sm btn-outline-light" (click)="authService.logout()">Logout</button>
+    </div>
+  }
+</header>

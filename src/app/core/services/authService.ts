@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Service, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { User } from '../models/user.type';
+import { User } from '../../shared/models/user.type';
 import { expiresInMins } from '../config/config';
 
 @Service()

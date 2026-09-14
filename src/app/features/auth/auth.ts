@@ -2,7 +2,7 @@ import { Component,inject,OnInit,signal } from '@angular/core';
 import {form, FormField,required,minLength} from '@angular/forms/signals';
 import { AuthService } from '../../core/services/authService';
 import { Router } from '@angular/router';
-import { User } from '../../core/models/user.type';
+import { User } from '../../shared/models/user.type';
 interface LoginData{
   username: string,
   password: string
@@ -35,8 +35,7 @@ export class Auth implements OnInit{
       this.authService.handleLogin(credentials.username,credentials.password).subscribe({
         next: (response:User) => {
           console.log('Login successful:', response);
-          this.router.navigate(['/profile']);
-          // alert(`Successfully logged in as ${credentials.username}!`);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           console.error('Login failed:', err);

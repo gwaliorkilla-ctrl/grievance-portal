@@ -1,1 +1,1 @@
-export const expiresInMins: number = 10; // Session expiration time in minutes
+export const expiresInMins: number = 100; // Session expiration time in minutes

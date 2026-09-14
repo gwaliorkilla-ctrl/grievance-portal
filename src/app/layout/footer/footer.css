@@ -1,0 +1,4 @@
+.footer-container {
+  background-color: var(--color-navy, #0a2540);
+  border-top: 2px solid var(--border-bottom, #d97706) !important;
+}

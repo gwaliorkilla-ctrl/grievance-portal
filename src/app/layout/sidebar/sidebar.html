@@ -1,0 +1,22 @@
+@if (isOpen()) {
+<div class="sidebar-container bg-white border-end">
+  
+  <ul class="nav nav-pills list-container p-2 gap-1 mb-auto">
+    <li class="nav-item">
+      <a routerLink="/dashboard" routerLinkActive="active" (click)="onNavClick()" class="nav-link d-flex gap-2">
+        <span>📊</span> Dashboard
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/complaints" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="onNavClick()" class="nav-link d-flex gap-2">
+        <span>📁</span> Complaints List
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/complaints/new" routerLinkActive="active" (click)="onNavClick()" class="nav-link d-flex gap-2">
+        <span>✏️</span> Lodge Complaint
+      </a>
+    </li>
+  </ul>
+</div>
+}

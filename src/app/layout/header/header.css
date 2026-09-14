@@ -1,0 +1,11 @@
+.header-banner {
+  background: linear-gradient(90deg, var(--color-navy, #0a2540) 0%, var(--navy-light, #16365c) 100%) !important;
+  border-bottom: 3px solid var(--border-bottom, #d97706);
+  min-height: 56px;
+}
+.header-title {
+  letter-spacing: 0.5px;
+}
+.bg-gold {
+  background-color: #f59e0b !important;
+}

@@ -1,0 +1,13 @@
+.layout-wrapper {
+  background-color: var(--color-bg, #f4f6f8);
+}
+.main-container{
+    display: block;
+}
+@media (min-width: 767.98px) {
+  .main-container{
+    display: flex;             
+    flex-grow: 1;
+    overflow: hidden;
+  }
+} 

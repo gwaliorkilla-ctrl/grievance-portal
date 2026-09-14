@@ -1,0 +1,13 @@
+.text-navy {
+  color: var(--color-navy);
+}
+.bg-navy {
+  background-color: var(--color-navy);
+}
+.bg-gold {
+  background-color: #f59e0b;
+}
+.gov-card {
+  border-radius: 6px;
+  overflow: hidden;
+}

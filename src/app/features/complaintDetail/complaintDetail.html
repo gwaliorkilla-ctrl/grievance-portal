@@ -1,0 +1,68 @@
+<div class="container mb-5">
+  <div class="mb-3">
+    <a routerLink="/complaints" class="btn btn-sm btn-outline-secondary">&larr; Return to Directory</a>
+  </div>
+
+  @if (loading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-navy"></div>
+    </div>
+  } @else if (complaint()) {
+    <div class="card shadow-sm border-0 gov-card bg-white mx-auto" style="max-width: 800px;">
+      <div class="card-header bg-navy text-white py-3 border-bottom-gold">
+        <h6 class="mb-0 fw-bold">Official Record File</h6>
+      </div>
+      <div class="card-body p-4">
+        <h5 class="fw-bold text-navy mb-1">{{ complaint()?.title }}</h5>
+        <small class="text-muted">Registered: {{ complaint()?.created_at | date:'medium' }}</small>
+        <hr class="my-3">
+
+        <div class="row g-2 mb-3 small">
+          <div class="col-4 text-muted">Reference ID:</div>
+          <div class="col-8 fw-mono text-break">{{ complaint()?.id }}</div>
+
+          <div class="col-4 text-muted">Complainant:</div>
+          <div class="col-8 fw-semibold">{{ complaint()?.complainant_name }}</div>
+
+          <div class="col-4 text-muted">Mobile No:</div>
+          <div class="col-8">{{ complaint()?.mobile_no }}</div>
+
+          <div class="col-4 text-muted">Category:</div>
+          <div class="col-8"><span class="badge badge-gov-type">{{ complaint()?.complaint_type }}</span></div>
+
+          <div class="col-4 text-muted">Sub-Category:</div>
+          <div class="col-8">{{ complaint()?.complaint_subtype }}</div>
+        </div>
+
+        <div class="mt-4">
+          <h6 class="fw-bold text-navy small">STATEMENT OF GRIEVANCE</h6>
+          <p class="border p-3 rounded bg-light text-secondary small" style="white-space: pre-wrap;">{{ complaint()?.description }}</p>
+        </div>
+
+        <div class="mt-4 pt-3 border-top d-flex gap-2">
+          @if (complaint()?.document_url) {
+            <a 
+              [href]="complaint()?.document_url" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn btn-gov-primary flex-grow-1 py-2">
+              📄 View Attached PDF
+            </a>
+          }
+          
+          <button 
+            type="button" 
+            class="btn btn-success flex-grow-1 py-2 fw-semibold"
+            [disabled]="resolving()"
+            (click)="resolveComplaint()">
+            @if (resolving()) {
+              <span class="spinner-border spinner-border-sm me-1"></span> Resolving...
+            } @else {
+              ✓ Mark as Resolved & Delete
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

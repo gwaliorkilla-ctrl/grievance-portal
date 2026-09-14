@@ -1,0 +1,106 @@
+<div class="container mb-5 form-container">
+  <div class="card shadow-sm border-0 gov-card">
+    <div class="card-header bg-navy text-white py-3 border-bottom-gold">
+      <h5 class="mb-0 fw-bold">Lodge Official Grievance</h5>
+      <small class="text-light opacity-75">Fill in the mandatory details below for administrative action</small>
+    </div>
+    <div class="card-body p-4">
+      @if (errorMessage()) {
+        <div class="alert alert-danger border-0 shadow-sm">{{ errorMessage() }}</div>
+      }
+
+      <form [formGroup]="complaintForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label fw-medium">Complainant Full Name *</label>
+          <input 
+            type="text" 
+            formControlName="complainant_name" 
+            class="form-control gov-input" 
+            [ngClass]="{'is-invalid': isInvalid('complainant_name')}" 
+            placeholder="As per government identity document">
+          <div class="invalid-feedback">Full name is required.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-medium">Contact Mobile Number *</label>
+          <input 
+            type="text" 
+            formControlName="mobile_no" 
+            class="form-control gov-input" 
+            [ngClass]="{'is-invalid': isInvalid('mobile_no')}" 
+            placeholder="10-digit registered mobile number">
+          <div class="invalid-feedback">Must be a valid 10-digit mobile number.</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label fw-medium">Grievance Category *</label>
+            <select 
+              formControlName="complaint_type" 
+              class="form-select gov-input" 
+              [ngClass]="{'is-invalid': isInvalid('complaint_type')}">
+              <option value="">Select Category</option>
+              <option value="Service">Public Service Delivery</option>
+              <option value="Billing">Billing & Financial</option>
+              <option value="Technical">Infrastructure & Technical</option>
+            </select>
+            <div class="invalid-feedback">Category selection is required.</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label fw-medium">Sub-Category *</label>
+            <input 
+              type="text" 
+              formControlName="complaint_subtype" 
+              class="form-control gov-input" 
+              [ngClass]="{'is-invalid': isInvalid('complaint_subtype')}" 
+              placeholder="e.g. Delays, System Failure">
+            <div class="invalid-feedback">Sub-category is required.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-medium">Subject / Title *</label>
+          <input 
+            type="text" 
+            formControlName="title" 
+            class="form-control gov-input" 
+            [ngClass]="{'is-invalid': isInvalid('title')}" 
+            placeholder="Brief subject statement">
+          <div class="invalid-feedback">Title is required.</div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-medium">Detailed Grievance Description *</label>
+          <textarea 
+            formControlName="description" 
+            class="form-control gov-input" 
+            rows="4" 
+            [ngClass]="{'is-invalid': isInvalid('description')}" 
+            placeholder="State the facts clearly with relevant dates or location details..."></textarea>
+          <div class="invalid-feedback">Description is required.</div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-medium">Supporting Document (PDF Format Only, Max 5MB) *</label>
+          <input 
+            type="file" 
+            accept="application/pdf" 
+            (change)="onFileSelected($event)" 
+            class="form-control gov-input" 
+            [ngClass]="{'is-invalid': fileError()}">
+          @if (fileError()) {
+            <div class="text-danger small mt-1">{{ fileError() }}</div>
+          }
+        </div>
+
+        <button type="submit" [disabled]="submitting()" class="btn btn-gov-primary w-100 py-2 fs-6">
+          @if (submitting()) {
+            <span class="spinner-border spinner-border-sm me-2"></span>Processing Submission...
+          } @else {
+            Submit Grievance Record
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
