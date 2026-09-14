@@ -50,8 +50,8 @@
 
   <div class="card shadow-sm border-0 gov-card bg-white">
     <div class="card-header bg-navy text-white py-3 d-flex justify-content-between align-items-center">
-      <h6 class="mb-0 fw-bold">Recent Grievance Submissions</h6>
-      <a routerLink="/complaints" class="btn btn-sm btn-outline-light py-1">View Full Directory</a>
+      <h6 class="mb-0 fw-bold">Recent Complaint Submissions</h6>
+      <a routerLink="/complaints" class="btn btn-sm btn-outline-light py-1">View Complaints</a>
     </div>
     <div class="card-body p-0">
       <ul class="list-group list-group-flush">
@@ -61,7 +61,7 @@
               <strong class="text-navy d-block">{{ item.title }}</strong>
               <small class="text-muted">By {{ item.complainant_name }} &bull; Category: {{ item.complaint_type }}</small>
             </div>
-            <a [routerLink]="['/complaints', item.id]" class="btn btn-sm btn-outline-secondary">Inspect File</a>
+            <a [routerLink]="['/complaints', item.id]" class="btn btn-sm btn-outline-secondary">Check Complaint</a>
           </li>
         } @empty {
           <li class="list-group-item p-4 text-center text-muted">No recent submissions logged.</li>
