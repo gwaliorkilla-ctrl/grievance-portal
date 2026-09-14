@@ -11,7 +11,7 @@ import { Complaint } from '../../shared/models/complaint.type';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
-export class DashboardComponent implements OnInit {
+export class Dashboard implements OnInit {
   private service = inject(ComplaintService);
 
   complaints = signal<Complaint[]>([]);

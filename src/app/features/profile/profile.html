@@ -1,0 +1,52 @@
+<div class="container mb-5">
+  <div class="mb-3">
+    <a routerLink="/dashboard" class="btn btn-sm btn-outline-secondary">&larr; Back to Dashboard</a>
+  </div>
+
+  @if (loading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-navy"></div>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="alert alert-danger shadow-sm max-w-profile mx-auto" role="alert">
+      {{ errorMessage() }}
+    </div>
+  } @else if (user()) {
+    <div class="card shadow-sm border-0 gov-card bg-white mx-auto max-w-profile">
+      <div class="card-header bg-navy text-white py-3 border-bottom-gold d-flex align-items-center justify-content-between">
+        <h6 class="mb-0 fw-bold text-uppercase tracking-wide">User Profile</h6>
+        <span class="badge bg-gold text-dark font-monospace">VERIFIED OFFICER</span>
+      </div>
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+          <img 
+            [src]="user()?.image || 'https://dummyjson.com/icon/emilys/128'" 
+            alt="Profile Picture" 
+            class="rounded-circle border border-2 border-primary p-1 bg-light"
+            width="72"
+            height="72">
+          <div>
+            <h5 class="fw-bold text-navy mb-0">{{ user()?.firstName }} {{ user()?.lastName }}</h5>
+            <small class="text-muted font-monospace">&#64;{{ user()?.username }}</small>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-sm-4 text-muted small fw-medium">Name:</div>
+          <div class="col-sm-8 fw-semibold text-navy">{{ user()?.firstName }} {{ user()?.lastName }}</div>
+
+          <div class="col-sm-4 text-muted small fw-medium">Username:</div>
+          <div class="col-sm-8 font-monospace small">{{ user()?.username }}</div>
+
+          <div class="col-sm-4 text-muted small fw-medium">Email:</div>
+          <div class="col-sm-8 text-break">{{ user()?.email }}</div>
+
+          <div class="col-sm-4 text-muted small fw-medium">Role:</div>
+          <div class="col-sm-8">
+            <span class="badge badge-gov-type">Complaint Manager</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

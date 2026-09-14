@@ -12,7 +12,7 @@ import { Complaint, ComplaintFilters } from '../../shared/models/complaint.type'
   templateUrl: './complaintList.html',
   styleUrl: './complaintList.css'
 })
-export class ComplaintListComponent implements OnInit {
+export class ComplaintList implements OnInit {
   private service = inject(ComplaintService);
   private fb = inject(FormBuilder);
 

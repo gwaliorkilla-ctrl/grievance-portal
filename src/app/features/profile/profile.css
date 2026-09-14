@@ -1,0 +1,31 @@
+.max-w-profile {
+  max-width: 600px;
+}
+
+.text-navy {
+  color: var(--gov-navy, #0a2540);
+}
+
+.bg-navy {
+  background-color: var(--gov-navy, #0a2540);
+}
+
+.border-bottom-gold {
+  border-bottom: 3px solid var(--gov-gold, #d97706);
+}
+
+.badge-gov-type {
+  background-color: #e2e8f0 !important;
+  color: var(--gov-navy, #0a2540) !important;
+  border: 1px solid #cbd5e1 !important;
+  font-weight: 600;
+  padding: 0.45em 0.75em;
+}
+
+.bg-gold {
+  background-color: #f59e0b !important;
+}
+
+.tracking-wide {
+  letter-spacing: 0.5px;
+}

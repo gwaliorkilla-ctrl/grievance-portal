@@ -3,6 +3,11 @@
   
   <ul class="nav nav-pills list-container p-2 gap-1 mb-auto">
     <li class="nav-item">
+      <a routerLink="/profile" routerLinkActive="active" (click)="onNavClick()" class="nav-link d-flex gap-2">
+        <span>🧑</span> Profile
+      </a>
+    </li>
+    <li class="nav-item">
       <a routerLink="/dashboard" routerLinkActive="active" (click)="onNavClick()" class="nav-link d-flex gap-2">
         <span>📊</span> Dashboard
       </a>

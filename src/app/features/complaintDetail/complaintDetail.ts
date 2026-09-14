@@ -11,7 +11,7 @@ import { Complaint } from '../../shared/models/complaint.type';
   templateUrl: './complaintDetail.html',
   styleUrl: './complaintDetail.css'
 })
-export class ComplaintDetailComponent implements OnInit {
+export class ComplaintDetail implements OnInit {
   private service = inject(ComplaintService);
   private router = inject(Router);
 

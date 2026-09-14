@@ -11,7 +11,7 @@ import { ComplaintService } from '../../core/services/complaintService';
   templateUrl: './complaintCreate.html',
   styleUrl: './complaintCreate.css'
 })
-export class ComplaintCreateComponent {
+export class ComplaintCreate {
   private fb = inject(FormBuilder);
   private service = inject(ComplaintService);
   private router = inject(Router);

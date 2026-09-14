@@ -1,11 +1,12 @@
 import { Auth } from './features/auth/auth';
-import { DashboardComponent } from './features/dashboard/dashboard';
-import { ComplaintListComponent } from './features/complaintList/complaintList';
-import { ComplaintCreateComponent } from './features/complaintCreate/complaintCreate';
-import { ComplaintDetailComponent } from './features/complaintDetail/complaintDetail';
+import { Dashboard } from './features/dashboard/dashboard';
+import { ComplaintList } from './features/complaintList/complaintList';
+import { ComplaintCreate } from './features/complaintCreate/complaintCreate';
+import { ComplaintDetail } from './features/complaintDetail/complaintDetail';
 import { Routes } from '@angular/router';
 import { guestGuard } from './core/guards/guest.guard';
 import { authGuard } from './core/guards/auth.guard';
+import { Profile } from './features/profile/profile';
 
 export const routes: Routes = [
   {
@@ -15,22 +16,27 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    component: Dashboard,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'profile',
+    component: Profile,
     canActivate: [authGuard],
   },
   {
     path: 'complaints',
-    component: ComplaintListComponent,
+    component: ComplaintList,
     canActivate: [authGuard],
   },
   {
     path: 'complaints/new',
-    component: ComplaintCreateComponent,
+    component: ComplaintCreate,
     canActivate: [authGuard],
   },
   {
     path: 'complaints/:id',
-    component: ComplaintDetailComponent,
+    component: ComplaintDetail,
     canActivate: [authGuard],
   },
   {

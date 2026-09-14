@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { computed, inject, Service, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
@@ -37,7 +37,20 @@ export class AuthService {
       })
     );
   }
+  fetchCurrentUser() {
+    const token = this.currentUser()?.accessToken || '';
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
+    return this.http.get<User>(
+      'https://dummyjson.com/auth/me',
+      {
+        headers,
+        withCredentials: true,
+      }
+    );
+  }
   logout() {
     localStorage.removeItem('auth_user');
     localStorage.removeItem('auth_user_expiry');
