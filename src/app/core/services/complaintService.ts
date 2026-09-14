@@ -13,7 +13,7 @@ import {
 })
 export class ComplaintService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/complaints';
+  private apiUrl = 'https://grievance-portal-backend-six.vercel.app/api/complaints';
   registerComplaint(formData: FormData): Observable<ComplaintCreateResponse> {
     return this.http.post<ComplaintCreateResponse>(this.apiUrl, formData);
   }
